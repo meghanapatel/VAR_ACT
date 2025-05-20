@@ -2,7 +2,7 @@ name: Variable Scope Demo
 
 # Workflow-Level Variable
 env:
-  MY_WORKFLOW_VARIABLE: "Hey!I am a workflow-level variable"
+  MY_VARIABLE: "I am from the WORKFLOW level"
 
 on:
   push:
@@ -11,28 +11,16 @@ on:
 
 jobs:
   scope-demo:
-    name: Demonstrate Variable Scopes
-
-    # Job-Level Variable
-    env:
-      MY_JOB_VARIABLE: "Hey! i am job-level variable"
-
+    name: Workflow vs Step Scope
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Print Workflow and Job Variables
+      - name: Print Workflow-Level Variable
         run: |
-          echo "Workflow Variable: $MY_WORKFLOW_VARIABLE"
-          echo "Job Variable: $MY_JOB_VARIABLE"
+          echo "MY_VARIABLE: $MY_VARIABLE"
 
-      - name: Step-Level Variable 
-        # Step-Level Variable
+      - name: Override with Step-Level Variable
         env:
-          MY_STEP_VARIABLE: "Hey!  I am step-level variable"
+          MY_VARIABLE: "I am from the STEP level. Overrinding workflow variable"
         run: |
-          echo "Workflow Variable: $MY_WORKFLOW_VARIABLE"
-          echo "Job Variable: $MY_JOB_VARIABLE"
-          echo "Step Variable: $MY_STEP_VARIABLE"
+          echo "MY_VARIABLE: $MY_VARIABLE"
