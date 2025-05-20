@@ -2,7 +2,7 @@ name: Variable Scope Demo
 
 # Workflow-Level Variable
 env:
-  MY_WORKFLOW_VARIABLE: "This is a workflow-level variable"
+  MY_WORKFLOW_VARIABLE: "Hey!I am a workflow-level variable"
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
 
     # Job-Level Variable
     env:
-      MY_JOB_VARIABLE: "This is a job-level variable"
+      MY_JOB_VARIABLE: "Hey! i am job-level variable"
 
     runs-on: ubuntu-latest
 
@@ -23,15 +23,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Echo Workflow and Job Variables
+      - name: Print Workflow and Job Variables
         run: |
           echo "Workflow Variable: $MY_WORKFLOW_VARIABLE"
           echo "Job Variable: $MY_JOB_VARIABLE"
 
-      - name: Step-Level Variable Demo
+      - name: Step-Level Variable 
         # Step-Level Variable
         env:
-          MY_STEP_VARIABLE: "This is a step-level variable"
+          MY_STEP_VARIABLE: "Hey!  I am step-level variable"
         run: |
           echo "Workflow Variable: $MY_WORKFLOW_VARIABLE"
           echo "Job Variable: $MY_JOB_VARIABLE"
